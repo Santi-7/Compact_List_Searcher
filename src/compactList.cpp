@@ -38,20 +38,36 @@ CompactList::CompactList(unsigned int size)
     mHead = randomPosition;
 }
 
-int CompactList::Search(int number, int &steps)
+int CompactList::LinealSearch(int number) const
+{
+    int i = mHead;
+    while (mVal[i] < number) {
+        i = mPtr[i];
+    }
+    return i;
+}
+
+int CompactList::RandomizedSearch(int number, int &steps)
 {
     steps = 0;
     int i = mHead;
     while (mVal[i] < number) {
         steps++;
+        // Random skip.
         int j = rand() % mVal.size();
         if (mVal[i] < mVal[j] & mVal[j] <= number) {
             i = j;
+        // Next value.
         } else {
             i = mPtr[i];
         }
     }
     return i;
+}
+
+int& CompactList::operator[](const unsigned int i)
+{
+    return mVal[i];
 }
 
 std::ostream& operator<<(std::ostream &out, const CompactList &cL)

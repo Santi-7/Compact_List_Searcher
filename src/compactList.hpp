@@ -31,7 +31,23 @@ public:
      * @param steps number of iterations made by this search.
      * @return the position of [number] in the compact list.
      */
-    int Search(int number, int &steps);
+    int RandomizedSearch(int number, int &steps);
+
+    /**
+     * Searchs the number [number] in the compact list and return its position.
+     *
+     * @param number to search.
+     * @return the position of [number] in the compact list.
+     */
+    int LinealSearch(int number) const;
+
+    /**
+      * Overloads the subscript operator to read the compact list.
+      *
+      * @param i index to read its value.
+      * @return memory reference to the index-th value.
+      */
+    int& operator[](const unsigned int i);
 
     /**
      * Overloads << to return an ostream with the representation of the compact list.
