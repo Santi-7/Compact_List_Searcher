@@ -29,13 +29,29 @@ CompactList::CompactList(unsigned int size)
     // Save the rest values.
     for (unsigned int i = size-1; i >= 1; i--) {
         unsigned int oldPosition = randomPosition;
-        randomPosition = *next(freePositions.begin(), rand() % size);
+        randomPosition = *next(freePositions.begin(), rand() % freePositions.size());
         freePositions.remove(randomPosition);
         mVal[randomPosition] = i;
         mPtr[randomPosition] = oldPosition;
     }
     // The smallest value is the last randomPosition calculated.
     mHead = randomPosition;
+}
+
+int CompactList::Search(int number, int &steps)
+{
+    steps = 0;
+    int i = mHead;
+    while (mVal[i] < number) {
+        steps++;
+        int j = rand() % mVal.size();
+        if (mVal[i] < mVal[j] & mVal[j] <= number) {
+            i = j;
+        } else {
+            i = mPtr[i];
+        }
+    }
+    return i;
 }
 
 std::ostream& operator<<(std::ostream &out, const CompactList &cL)

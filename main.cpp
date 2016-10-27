@@ -16,5 +16,11 @@ int main()
     // Initialize random seed.
     srand(time(NULL));
 
-    cout << CompactList(6);
+    CompactList list(5);
+    int steps;
+    int index = list.Search(4, steps);
+
+    cout << list << endl;
+    cout << index << endl;
+    cout << steps << endl;
 }

@@ -24,6 +24,16 @@ public:
     CompactList(unsigned int size);
 
     /**
+     * Searchs the number [number] in the compact list and return its position.
+     * It also puts into [steps] the number of iterations made.
+     *
+     * @param number to search.
+     * @param steps number of iterations made by this search.
+     * @return the position of [number] in the compact list.
+     */
+    int Search(int number, int &steps);
+
+    /**
      * Overloads << to return an ostream with the representation of the compact list.
      *
      * @param out ostream.
